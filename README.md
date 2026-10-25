@@ -2,6 +2,8 @@
 
 The handheld component of **Motion Tennis**, a doubles tennis demonstrator for four people in two fixed teams. Each battery-powered wireless controller belongs to one player/avatar, sends identified movement samples to the Raspberry Pi 3 Model B, and provides visible and haptic feedback after physics processing.
 
+**Start contributing:** read [repository orientation](docs/orientation.md), [staged workflow](docs/workflow.md) and [AGENTS.md](AGENTS.md), then check the canonical [project status](https://github.com/motion-tennis/documentation/blob/main/docs/project-status.md). The [shared task/handoff workflow](https://github.com/motion-tennis/documentation/blob/main/docs/contribution-workflow.md) keeps each human or AI contribution within a named, bounded slice; the specifications below are not an instruction to implement all future stages at once.
+
 ## Status and reference hardware
 
 | Status | Meaning |
@@ -84,7 +86,12 @@ Configured GitHub access is required. Planned implementation modules are board/s
 
 ## Planned smoke test and current checks
 
-First test one battery-powered controller against simulated pose/game services: verify MPU-6050 I²C/filter/divider configuration and 200 Hz cadence, then trace a regular sample through the required ball query, accepted update and matching response; verify `t0`, `tr` and eligible `t1` with GPIO/electrical traces. Add the Zephyr motion-handler/timestamp extension and threshold markers; verify explicit sample links, IRQ delay, status clear/latch behavior, false/repeated triggers, shared-line overlaps and unchanged stream behavior. Repeat for a miss, tracking failure, packet loss, expired/duplicate response, reboot and queue overflow. After the match-contract extension, test all four confirmed assignments and overhead serving without extra sends or marker-driven decisions, using real tracking and the [integration matrix](https://github.com/motion-tennis/documentation/blob/main/docs/testing.md).
+These are stage-scoped acceptance cases, not a separate implementation sequence or release of future work. Use the [local workflow](docs/workflow.md) and canonical status to select one authorized slice:
+
+- **S1, local slice:** verify MPU-6050 I²C/filter/divider configuration, 200 Hz cadence, source IDs/timestamps and safe bounded output defaults using local fixtures and available hardware.
+- **S2, feasibility:** use one battery controller and explicitly labeled transport/pose/game stubs for isolated session and radio probes. Add the scoped Zephyr motion-handler/timestamp extension and threshold markers; verify IRQ delay, status clearing/latching, repeated/haptic triggers and overlaps without changing the stream. Validate clock drift/uncertainty/asymmetry and restart behavior with the actual Pi and controller; stub-only evidence cannot pass that gate.
+- **S3, real diagnostic path:** with real tracking, trace a sample and linked marker through pose selection, the required ball query/response, accepted atomic update and matching feedback. Verify `t0`, `tr` and eligible `t1` with GPIO/electrical traces, including miss, tracking failure, packet loss, expired/duplicate response, reboot and queue-overflow cases.
+- **S4, doubles:** under the reviewed match-contract extension, test all four confirmed bindings and body-relative racket/overhead-serve gestures while Pi moves avatars automatically. Keep every regular sample and avoid marker-driven sends/decisions. Use the shared [integration matrix](https://github.com/motion-tennis/documentation/blob/main/docs/testing.md); S5 owns the complete matched measurement campaign.
 
 No firmware, hardware or wireless test has run. The current repository-local documentation check is:
 
@@ -97,8 +104,11 @@ The central [development guide](https://github.com/motion-tennis/documentation/b
 ## Layout, limitations, and contribution
 
 ```text
-README.md  Component reference profile and implementation status
-LICENSE    Existing MIT license
+README.md            Component reference profile and implementation status
+AGENTS.md            Contributor instructions and scope boundaries
+docs/orientation.md  Role, reading order, actual evidence and checks
+docs/workflow.md     Local deliverables mapped to shared stage gates
+LICENSE              Existing MIT license
 ```
 
 Hardware wiring, battery runtime, safe actuation limits, interrupt/sample timing, radio behavior and four-player capacity remain unverified. Follow the [open-decision register](https://github.com/motion-tennis/documentation/blob/main/docs/roadmap.md).
