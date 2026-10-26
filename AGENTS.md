@@ -20,7 +20,7 @@ S0 permits small explicitly tasked contract-validation tools and generated-codec
 - MPU-6050 has one shared INT. Do not invent a second interrupt output, sensor timestamps or working Zephyr motion support. Keep source attribution, early timestamps, filter/divider readback and unresolved overlap explicit.
 - Pi physics owns fusion, avatar movement, ball/serve/rule calculations and scoring. Preserve the required Pi-to-game ball-state request/response and accepted-commit feedback semantics; controller firmware must not replace them with local decisions.
 - Preserve original clocks, same-controller timing, bounded outputs/queues, expiry, duplicate handling, and explicit failures. The Pi owns clock maps; never silently step the ESP32 clock or relabel late callbacks as IRQ edges.
-- Use the central protocol/profile/marker/assignment specifications; coordinate a versioned contract change rather than silently changing payloads or numerical limits. The current ball-only schema does not already implement the future full doubles match.
+- Use the central protocol/profile/marker/assignment specifications; coordinate a versioned contract change rather than silently changing payloads or numerical limits. The proposed v0.3 full-match schema is a shared contract, not implemented controller/runtime interoperability; use its pinned profile and fixtures.
 
 ## Validate and hand off
 
