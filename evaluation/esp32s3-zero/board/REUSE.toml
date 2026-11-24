@@ -1,0 +1,10 @@
+version = 1
+
+[[annotations]]
+path = [
+    "boards/waveshare/esp32s3_zero/board.yml",
+    "boards/waveshare/esp32s3_zero/esp32s3_zero_esp32s3_appcpu.yaml",
+    "boards/waveshare/esp32s3_zero/esp32s3_zero_esp32s3_procpu.yaml",
+]
+SPDX-License-Identifier = "Apache-2.0"
+SPDX-FileCopyrightText = "Copyright The Zephyr Project Contributors"

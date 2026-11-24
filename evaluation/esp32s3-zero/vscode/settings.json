@@ -1,0 +1,33 @@
+{
+  // IntelliSense uses the compile database of the last build of zero_blink.
+  // Change the path when you work on another application.
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/zero_blink/compile_commands.json",
+  "C_Cpp.default.cStandard": "c17",
+
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+
+  // New terminals use the workspace venv (west, esptool, pyserial) without "source".
+  "terminal.integrated.env.linux": {
+    "VIRTUAL_ENV": "${workspaceFolder}/.venv",
+    "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}"
+  },
+
+  "files.associations": {
+    "*.overlay": "dts",
+    "*.dtsi": "dts",
+    "*.conf": "properties",
+    "*_defconfig": "properties"
+  },
+
+  // Keep the file watcher and search away from large generated or third-party trees.
+  "files.watcherExclude": {
+    "**/build/**": true,
+    "**/.venv/**": true,
+    "**/zephyr/**": true,
+    "**/modules/**": true
+  },
+  "search.exclude": {
+    "**/build": true,
+    "**/.venv": true
+  }
+}

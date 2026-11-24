@@ -1,0 +1,55 @@
+{
+  // Zephyr tasks for the west workspace ~/zephyrproject (open this folder in VS Code via WSL).
+  // Run with Terminal > Run Task..., or Ctrl+Shift+B for the default build task.
+  "version": "2.0.0",
+  "options": {
+    "cwd": "${workspaceFolder}",
+    "env": {
+      "VIRTUAL_ENV": "${workspaceFolder}/.venv",
+      "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}"
+    }
+  },
+  "inputs": [
+    {
+      "id": "app",
+      "type": "promptString",
+      "description": "Application folder below apps/",
+      "default": "zero_blink"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "Zephyr: Build",
+      "type": "shell",
+      "command": "west build -b esp32s3_zero/esp32s3/procpu apps/${input:app} -d build/${input:app} -- -DBOARD_ROOT=${workspaceFolder}/hardware/esp32s3_zero",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Zephyr: Build (pristine)",
+      "type": "shell",
+      "command": "west build -p -b esp32s3_zero/esp32s3/procpu apps/${input:app} -d build/${input:app} -- -DBOARD_ROOT=${workspaceFolder}/hardware/esp32s3_zero",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Zephyr: Flash",
+      "type": "shell",
+      "command": "west flash -d build/${input:app}",
+      "problemMatcher": []
+    },
+    {
+      "label": "Zephyr: Monitor",
+      "type": "shell",
+      "command": "python -m serial.tools.miniterm --exit-char 24 /dev/ttyACM0 115200",
+      "presentation": { "panel": "dedicated", "focus": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Zephyr: Build + Flash + Monitor",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Zephyr: Build", "Zephyr: Flash", "Zephyr: Monitor"],
+      "problemMatcher": []
+    }
+  ]
+}

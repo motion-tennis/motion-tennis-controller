@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "kind": "reference-board-copy",
+  "reference_id": "9ffc59c205915b91bf23",
+  "reference_name": "esp32s3_matrix",
+  "reference_path": "<workspace>/zephyr/boards/waveshare/esp32s3_matrix",
+  "selected_soc": null,
+  "zephyr": {
+    "path": "<workspace>/zephyr",
+    "version": "4.4.0",
+    "commit": "684c9e8f32e4373a21098559f748f06915f950c9",
+    "dirty": false,
+    "recommended_sdk": "1.0.1"
+  },
+  "source_files": [
+    {
+      "path": "Kconfig",
+      "sha256": "ece989fff0ca27e450f60fd497b2c29416ae58ef38cbf0d216f01f52276c47d6"
+    },
+    {
+      "path": "Kconfig.esp32s3_matrix",
+      "sha256": "9866e4662e7f1f6f5fa09c646fea1a761d6d5242b9e4b9deb5cedb9470cf4d05"
+    },
+    {
+      "path": "Kconfig.sysbuild",
+      "sha256": "846681ffb626169ee8f959e71049e48956f8b63ce8ad408e5ea2d49027fa03dd"
+    },
+    {
+      "path": "board.cmake",
+      "sha256": "7ecba016225cccf2a7168ba021f84d9c4fbc2e547f58d711ff406d99eb5b19b8"
+    },
+    {
+      "path": "board.yml",
+      "sha256": "8b0b6fe83ad774d672207c78703d96747a5baba14e6daccbee41760e747d1289"
+    },
+    {
+      "path": "esp32s3_matrix-pinctrl.dtsi",
+      "sha256": "2def8ca706393269db712b870f62e309f70da8f37ebf947f57b1221522d6df1b"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_appcpu.dts",
+      "sha256": "fa4fedbefba6e5695e84f412dc0a08d2605dbc63805c5dd7aa5761cae5ab601f"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_appcpu.yaml",
+      "sha256": "077005c3d1c08ef75170f72ac08767db7810661ffecce68b4aef5132e96a0a60"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_appcpu_defconfig",
+      "sha256": "12c336bda42c2e36e01865ac885217e5ceaf9286b2a3b8175f473a46b7122623"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_procpu.dts",
+      "sha256": "566281d69787d2b30887a95ef5c5d2405f21cff65910fcef3896f3712e0e5444"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_procpu.yaml",
+      "sha256": "90b598812af1f22fcafe08e6f05d779dec2351765b93549ee05e3c233a3a58cc"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_procpu_defconfig",
+      "sha256": "c30e84a93ae99f193f3f7cc94fbe440d835dff08ef3da15d10be4eafe1a0404a"
+    },
+    {
+      "path": "support/openocd.cfg",
+      "sha256": "fa6757644d2d370ca0a31f82ef4502846d02e2dbdb5a6b8720b23da3bf55b155"
+    }
+  ],
+  "omitted_directories": [
+    "doc"
+  ],
+  "attribution": [
+    {
+      "path": "Kconfig",
+      "identifier": "Apache-2.0",
+      "source": "file-header"
+    },
+    {
+      "path": "Kconfig.esp32s3_matrix",
+      "identifier": "Apache-2.0",
+      "source": "file-header"
+    },
+    {
+      "path": "Kconfig.sysbuild",
+      "identifier": "Apache-2.0",
+      "source": "file-header"
+    },
+    {
+      "path": "board.cmake",
+      "identifier": "Apache-2.0",
+      "source": "file-header"
+    },
+    {
+      "path": "board.yml",
+      "identifier": "Apache-2.0",
+      "source": "REUSE.toml",
+      "copyright": "Copyright The Zephyr Project Contributors"
+    },
+    {
+      "path": "esp32s3_matrix-pinctrl.dtsi",
+      "identifier": "Apache-2.0",
+      "source": "file-header"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_appcpu.dts",
+      "identifier": "Apache-2.0",
+      "source": "file-header"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_appcpu.yaml",
+      "identifier": "Apache-2.0",
+      "source": "REUSE.toml",
+      "copyright": "Copyright The Zephyr Project Contributors"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_appcpu_defconfig",
+      "identifier": "Apache-2.0",
+      "source": "file-header"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_procpu.dts",
+      "identifier": "Apache-2.0",
+      "source": "file-header"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_procpu.yaml",
+      "identifier": "Apache-2.0",
+      "source": "REUSE.toml",
+      "copyright": "Copyright The Zephyr Project Contributors"
+    },
+    {
+      "path": "esp32s3_matrix_esp32s3_procpu_defconfig",
+      "identifier": "Apache-2.0",
+      "source": "file-header"
+    },
+    {
+      "path": "support/openocd.cfg",
+      "identifier": "Apache-2.0",
+      "source": "file-header"
+    }
+  ],
+  "licenses": [
+    {
+      "path": "LICENSE",
+      "source_path": "LICENSE",
+      "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+    },
+    {
+      "path": "licenses/reference-REUSE.toml",
+      "source_path": "REUSE.toml",
+      "sha256": "2c9e9313494bf61059c1124000dc7b45ec5c285fd346cfdc0ec85dd1110978ca"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+/*
+ * SPDX-License-Identifier: MIT
+ *
+ * Application overlay for esp32s3_zero/esp32s3/procpu.
+ *
+ * MPU-6050 on I2C0:
+ *   SDA  -> GPIO1
+ *   SCL  -> GPIO2
+ *   INT  -> GPIO4 (data-ready, only used once a trigger mode is enabled)
+ *   AD0  -> open or GND (address 0x68)
+ *   VCC  -> 3V3, GND -> GND
+ */
+
+#include <zephyr/dt-bindings/pinctrl/esp32s3-pinctrl.h>
+#include <zephyr/dt-bindings/gpio/gpio.h>
+#include <zephyr/dt-bindings/i2c/i2c.h>
+
+/ {
+	aliases {
+		imu0 = &mpu6050;
+	};
+};
+
+&pinctrl {
+	i2c0_default: i2c0_default {
+		group1 {
+			pinmux = <I2C0_SDA_GPIO1>,
+				 <I2C0_SCL_GPIO2>;
+			bias-pull-up;
+			drive-open-drain;
+			output-high;
+		};
+	};
+};
+
+&i2c0 {
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_FAST>; /* 400 kHz */
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-names = "default";
+
+	mpu6050: mpu6050@68 {
+		compatible = "invensense,mpu6050";
+		reg = <0x68>;
+		status = "okay";
+		int-gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
+		/* Widest ranges, so fast swings do not saturate during tests. */
+		accel-fs = <16>;
+		gyro-fs = <2000>;
+		/*
+		 * The Zephyr driver does not configure the DLPF, so the gyro base
+		 * rate is 8 kHz: rate = 8 kHz / (1 + smplrt-div).
+		 * 39 -> 200 Hz as required by the specification.
+		 */
+		smplrt-div = <39>;
+	};
+};
+
+/* Wi-Fi station (disabled in the SoC default). */
+&wifi {
+	status = "okay";
+};
