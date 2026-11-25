@@ -4,9 +4,9 @@
 
 ## Purpose and present evidence
 
-This repository is the firmware boundary for four wireless battery handhelds. Each device measures one player's movement, sends identified samples to the Pi and applies validated LED/haptic feedback. The chosen first prototype is MPU-6050 over I²C with Zephyr; ESP32-S3-DevKitC-1-N8R8 is a proposed board variant. Exact parts, wiring, dependency versions and measured behavior remain unresolved.
+This repository is the firmware boundary for four wireless battery handhelds. Each device measures one player's movement, sends identified samples to the Pi and applies validated LED/haptic feedback. The chosen first prototype uses MPU-6050 over I²C with Zephyr. ESP32-S3-DevKitC-1-N8R8 is the proposed board. The S1 board, wiring and dependency revisions still need confirmation.
 
-**Implemented here:** README, contributor/orientation/workflow documents and MIT license. There is no firmware, board configuration, generated codec, build/flash command or local test suite. The adjacent `debug-units` repository has an offline synthetic trace auditor; that is not controller firmware or hardware evidence. **Agreed design** and **proposed implementation** remain distinct throughout the [component README](../README.md).
+The [ESP32-S3-Zero evaluation](../evaluation/esp32s3-zero/README.md) contains a custom board, a Zephyr application and a host receiver. Its device evidence covers a flashed board and its onboard LED. The WLAN and UDP code belongs to the recorded evaluation exception. Local 200 Hz acquisition, loss accounting and safe outputs still need evidence under the [S1 handoff](s0-contract-review.md#first-bounded-s1-task).
 
 Read the canonical [project status](https://github.com/motion-tennis/documentation/blob/main/docs/project-status.md) to find the currently authorized global stage. The [shared stage gates](https://github.com/motion-tennis/documentation/blob/main/docs/project-stages.md) and [local workflow](workflow.md) describe possible deliverables, not permission to start later ones. Keep the active-stage decision in the central record rather than copying it here.
 
@@ -45,7 +45,7 @@ Also inspect new untracked Markdown for trailing whitespace and a final newline.
 python3 scripts/check_docs.py
 ```
 
-That checker examines available sibling documentation and links; it does not compile firmware, test the MPU-6050, validate Zephyr compatibility or measure latency. Missing sibling checkouts are not verified remote content. No additional build, flash or test command exists here yet. Add reproducible commands only when their implementation arrives in an authorized slice.
+The documentation checker covers available sibling checkouts and local links. For the bench application, use the board-specific build, flash and Python receiver instructions. Record host fixture results and device observations separately. [Evaluation application guide](../evaluation/esp32s3-zero/zero_blink/README.md)
 
 ## Small S0 tasks to propose
 

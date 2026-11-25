@@ -10,7 +10,7 @@ The [S0 contract review and first S1 handoff](docs/s0-contract-review.md) record
 
 | Status | Meaning |
 | --- | --- |
-| **Implemented** | Documentation and an MIT license only; no firmware, board configuration, build/flash setup or tests exist |
+| **Evaluation** | A Waveshare ESP32-S3-Zero board definition, Zephyr test application and Python receiver. The bench record covers a flashed board and its onboard RGB LED. [Source, setup and limitations](evaluation/esp32s3-zero/README.md) |
 | **Agreed design** | ESP32 handhelds using MPU-6050 over I²C and Zephyr for the first prototype, with LED and vibration motor; wireless battery operation; unchanged continuous 200 Hz stream plus an independent, traceable hardware threshold marker |
 | **Proposed reference** | ESP32-S3-DevKitC-1-N8R8 board, bounded UDP/Protobuf messaging and hardware-limited feedback |
 | **Open** | Exact ESP32 board/module and MPU-6050 breakout, validated wiring/pins, battery/power circuit, motor/driver selection, Zephyr/HAL versions, motion-handler/early-timestamp integration and measured timing |
@@ -75,7 +75,7 @@ All `t0`, `tr` and `t1` differences use the same ESP32 clock; no inter-device sy
 
 ## Prerequisites and setup
 
-Git and a Markdown viewer are sufficient for current documentation work. The selected prototype firmware requires pinned and verified Zephyr/toolchain/HAL revisions, an ESP32 board configuration, MPU-6050 I²C/INT integration, feedback/power design and generated bounded codecs. Zephyr integration must cover the actual 200 Hz mode, motion-handler extension and early timestamp hooks, not only an IMU binding. No firmware installation or flashing command is available yet.
+The ESP32-S3-Zero evaluation has build and flash instructions for Zephyr 4.4.0 and SDK 1.0.1. For the S1 controller, confirm the actual board, breakout, wiring and toolchain before measuring regular acquisition and checking safe output defaults. [Evaluation build and flash instructions](evaluation/esp32s3-zero/zero_blink/README.md#build-and-flash) · [S1 handoff](docs/s0-contract-review.md#first-bounded-s1-task)
 
 The verified repository remote can be cloned with:
 
@@ -95,7 +95,7 @@ These are stage-scoped acceptance cases, not a separate implementation sequence 
 - **S3, real diagnostic path:** with real tracking, trace a sample and linked marker through pose selection, the required ball query/response, accepted atomic update and matching feedback. Verify `t0`, `tr` and eligible `t1` with GPIO/electrical traces, including miss, tracking failure, packet loss, expired/duplicate response, reboot and queue-overflow cases.
 - **S4, doubles:** under the reviewed match-contract extension, test all four confirmed bindings and body-relative racket/overhead-serve gestures while Pi moves avatars automatically. Keep every regular sample and avoid marker-driven sends/decisions. Use the shared [integration matrix](https://github.com/motion-tennis/documentation/blob/main/docs/testing.md); S5 owns the complete matched measurement campaign.
 
-No firmware, hardware or wireless test has run. The current repository-local documentation check is:
+The evaluation defaults to simulated input at 10 Hz. Its [bench record](evaluation/esp32s3-zero/README.md#verified-so-far) identifies the verified LED and host encoding results. Device sampling, electrical output safety and wireless delivery still need measurements. To check documentation edits locally, run
 
 ```sh
 git diff --check
@@ -110,6 +110,7 @@ README.md            Component reference profile and implementation status
 AGENTS.md            Contributor instructions and scope boundaries
 docs/orientation.md  Role, reading order, actual evidence and checks
 docs/workflow.md     Local deliverables mapped to shared stage gates
+evaluation/esp32s3-zero/  Evaluation board, test application, receiver and editor setup
 LICENSE              Existing MIT license
 ```
 
